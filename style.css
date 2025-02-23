@@ -1,0 +1,204 @@
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1px 3fr; /*Part*/
+  height: 100vh;
+}
+
+.left .right{
+    flex: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #ffffff;
+  font-size: 50px;
+  padding-left: 20px;
+  padding-right: 10px;
+  }
+  
+  .divider{
+    border-left: 2px solid #21130d;
+    height: 100%;
+  }
+  .right {
+    display: inline-block;
+    align-items: left;
+    justify-content: left;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-left: 40px;
+    color: #21130d;
+  }
+
+  .ingredient-input-container {
+    display: flex;
+    margin-top: 50px; 
+    align-items: center; /* Centers items vertically */
+    gap: 10px; /* Adds space between input and button */
+  }
+
+  .recipe-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  #recipe-content{
+    display: inline-block;
+    font-size: 20px;
+    color: #21130d;
+    padding: 10px;
+    width: 50vw;
+    height: 50vh;
+    border-radius: 5px;
+    border: 1px solid #21130d;
+    overflow: auto;
+    white-space: pre-wrap;
+    cursor: text;
+  }
+
+  #ingredient-input-box {
+    display: inline-flex;  
+    font-size: 15px;
+    color: #21130d;
+    padding-left: 10px;
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #21130d;
+  }
+
+  #generate-recipe{
+    display: inline;
+    padding: 10px;
+    font-size: 15px;
+    color: #21130d;
+    border-radius: 20px;
+    border: 1px solid #21130d;
+  }
+
+
+  button:focus {
+    outline: none;
+  }
+
+  
+.chatBotSection {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatBotCircle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.chatBotBox{
+    display: none;
+    position: absolute; 
+    bottom: 80px; /* Slightly above chat button */
+    right: 0;
+    height: 60vh;
+    width: 20vw;
+    border: 1px solid black;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.chatBotBox.active {
+  display: block; 
+}
+.chatBotBox.none{
+  display: none;
+}
+
+.chat-bot-container{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 10px; 
+    margin-bottom: 15px;
+}
+
+.chat-bot-picture img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.chat-bot-msg-response{
+  max-height: 100%;
+  max-width: 75%;
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  word-wrap: break-word; /* Ensures long words break properly */
+  overflow-wrap: break-word; /* Additional support for breaking words */
+  white-space: pre-wrap; /* Preserves spaces and line breaks */
+}
+
+.user-msg-container{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: end;
+  gap: 10px; 
+  margin-bottom: 15px;
+}
+
+.user-picture img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.user-input-msg{
+  max-height: 100%;
+  max-width: 75%;
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  word-wrap: break-word; /* Ensures long words break properly */
+  overflow-wrap: break-word; /* Additional support for breaking words */
+  white-space: pre-wrap; /* Preserves spaces and line breaks */
+}
+
+
+.input-user-questions{
+  width: 90%;
+}
+
+.input-user-questions input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
