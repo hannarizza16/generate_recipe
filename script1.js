@@ -1,3 +1,10 @@
+
+fetch('config.json')
+    .then(response => response.json())
+    .then(config => {
+        console.log(config.API_KEY)
+    })
+
 // 🔹 Load API Key from config.json
 async function getAPIKey() {
     const response = await fetch("config.json");  // Fetch config file
