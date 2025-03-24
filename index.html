@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Generator</title>
-    <script src="script1.js" defer></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
         <div class="left"> RECIPE GENERATOR </div>
         <div class="divider"></div>
-        <div class="right"> WHAT TO COOK? 
+        <div class="right"> WHAT TO COOK?
 
             <div class="ingredient-input-container">
+
                 <input type="text" id="ingredient-input-box" name="ingredient-input-box" autocomplete="off">
-                
+
                 <button id="generate-recipe" onclick="generateRecipe()">Generate Recipe</button>
             </div>
             <div class="recipe-container">
@@ -26,36 +29,45 @@
             <div class="chatBotSection"> <!--circle -->
 
                 <div class="chatBotBox"> <!-- mismong box -->
+                    <div class="top-part-container">
+                        <div class="top-part">Chat with AI
 
-                    <!-- AI response sectinn -->
-                    <div class="chat-bot-container">
-                        <div class="chat-bot-picture">
-                            <img src="img/chefBot.png" alt="Chef Robot" />
                         </div>
-                        <div class="chat-bot-msg-response">hellsddsdsffssfsfdfsddsfsfddffsfddo</div>
+                    </div>
+                    <div class="custom-divider"></div>
+
+                    <div class="chat-bot-msg">
+                        <div class="all-chat-container">
+                            
+                        </div>
+                        <!-- AI response sectinn -->
+                        <!-- <div class="chat-bot-container"> -->
+                            <!-- <div class="aiName">AI</div>-->
+                            <!-- <div class="chat-bot-msg-response"></div>  -->
+                        <!-- </div> -->
+                        <!-- User chat section  -->
+                        <!-- <div class="user-msg-container"> -->
+                            <!-- User Message Input -->
+                        <!-- </div> -->
                     </div>
 
-                    <!-- User chat section  -->
-                    <div class="user-msg-container">
-                        <div class="user-picture">
-                            <img src="img/chefBot.png" alt="Chef Robot" />
-                        </div>
-                        <div class="user-input-msg">hafsi</div>
-                    </div>
-
+                    <div class="custom-divider"></div>
                     <!-- user input message section -->
-                        <div class="input-user-questions">
-                            <input type="text" placeholder="Type your message...">
-                        </div>
+                    <div class="input-user-questions">
+                        <input type="text" class="user-text-input" placeholder="Ask for recipe...">
+                        <button class="chatWithAI">Send</button>
+
+                    </div>
 
                 </div>
-                
-                <button class="chatBotCircle"> </button>
+
+                <button class="chatBotCircle"> 💬 Chat with AI </button>
             </div>
-    </div>
-   
+        </div>
 
 
-    
+
+
 </body>
+
 </html>
