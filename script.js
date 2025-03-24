@@ -30,7 +30,7 @@ const recipeContent = document.querySelector('.recipe-content');
 const chatBotCircle = document.querySelector('.chatBotCircle');
 const chatBotBox = document.querySelector(".chatBotBox");
 // ChatBot AI Inner
-const chatUserTxtInput = document.querySelector(".user-text-input"); // input box
+const chatUserTxtInput = document.querySelector(".user-text-input"); // chat input box
 const userMsgContainer = document.querySelector(".user-msg-container");
 const chatBotMsgContainer = document.querySelector(".chat-bot-container");
 const allChatContainer = document.querySelector('.all-chat-container');
@@ -39,6 +39,7 @@ const sendButton = document.querySelector('.chatWithAI');
 
 const generateRecipe = async () => {
     let inputValue = inputDish.value.trim();
+    console.log(inputValue);
 
     if (inputValue === "") {
         alert("Please enter a dish before generating a recipe");
@@ -234,16 +235,23 @@ const chatBotAssist = async (url, inputValue) => {
 }
 
 const handleUserInput = (event) => {
-    if(event.type === "click" || event.type === "keydown" && event.key === "Enter"){
-        chatWithAI();
+
+    if(event.type === "keydown" && event.key === "Enter"){
+        if(event.target === inputDish){
+            generateRecipe();
+        }else if(event.target === chatUserTxtInput){
+            chatWithAI();
+        }
         return;
     }
 
-    if(event.type === "keydown" && event.key === "Enter"){
+    if(event.type === "click"){
         generateRecipe();
-        return;
     }
+
 };
+
+
 
 chatUserTxtInput.addEventListener("keydown", handleUserInput);
 sendButton.addEventListener("click", handleUserInput);
