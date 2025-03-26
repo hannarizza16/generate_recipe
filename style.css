@@ -181,7 +181,6 @@ button:focus {
   display: flex;
   justify-content: flex-start;
   gap: 5px;
-  /* font-size: 15px; */
 }
 
 .chat-bot-msg-content{
