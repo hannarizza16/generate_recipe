@@ -220,7 +220,7 @@ const chatWithAI = async () => {
             const aiResponseMsg = document.createElement("div");
 
             aiNameDiv.textContent = "ChatBot AI";
-            aiResponseMsg.innerHTML = cleanText ;
+            aiResponseMsg.innerHTML = cleanText;
             allChatContainer.appendChild(aiNameDiv);
             allChatContainer.appendChild(aiResponseMsg);
 
