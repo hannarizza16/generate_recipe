@@ -16,8 +16,8 @@
         <div class="divider"></div>
         <div class="right"> WHAT TO COOK?
 
+<!--RECIPE GENERATOR SECTION  -->
             <div class="ingredient-input-container">
-
                 <input type="text" id="ingredient-input-box" name="ingredient-input-box" autocomplete="off">
 
                 <button id="generate-recipe" onclick="generateRecipe()">Generate Recipe</button>
@@ -26,39 +26,28 @@
                 <div class="recipe-content" id="recipe-content"></div>
             </div>
 
-            <div class="chatBotSection"> <!--circle -->
 
+<!-- CHAT BOT SECTION -->
+            <div class="chatBotSection"> <!-- chat bot section -->
                 <div class="chatBotBox"> <!-- mismong box -->
                     <div class="top-part-container">
                         <div class="top-part">Chat with AI
-
                         </div>
                     </div>
                     <div class="custom-divider"></div>
-
                     <div class="chat-bot-msg">
-                        <div class="all-chat-container">
-                            
+                        <div class="all-chat-container">  
                         </div>
                     </div>
-
                     <div class="custom-divider"></div>
-                    <!-- user input message section -->
+<!-- user input message section -->
                     <div class="input-user-questions">
                         <input type="text" class="user-text-input" placeholder="Ask for recipe...">
-                        <button class="chatWithAI">Send</button>
-
+                        <button class="chatWithAI" onclick="chatWithAI()">Send</button>
                     </div>
-
                 </div>
-
                 <button class="chatBotCircle"> 💬 Chat with AI </button>
             </div>
         </div>
-
-
-
-
 </body>
-
 </html>

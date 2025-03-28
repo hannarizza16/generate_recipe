@@ -26,18 +26,15 @@ const recipeContent = document.querySelector(".recipe-content");
 const chatBotCircle = document.querySelector(".chatBotCircle");
 const chatBotBox = document.querySelector(".chatBotBox");
 // ChatBot AI Inner
-const chatUserTxtInput = document.querySelector(".user-text-input"); // chat input box
+const chatUserTxtInput = document.querySelector(".user-text-input");
 const userMsgContainer = document.querySelector(".user-msg-container");
 const chatBotMsgContainer = document.querySelector(".chat-bot-container");
 const allChatContainer = document.querySelector(".all-chat-container");
 const sendButton = document.querySelector(".chatWithAI");
 
 
-// GENERATES RECIPE IN RECIPE GENERATIOR SECTION
-// REQUEST
-// HANDLES THE LOGIC 
-// VALIDATES THE INPUT
-// DISPLAYS THE OUTPUT
+
+// this section holds a lot of 
 const generateRecipe = async () => {
     let inputValue = inputDish.value.trim();
 
@@ -50,35 +47,28 @@ const generateRecipe = async () => {
 
     try {
         const API_KEY = await fetchAPIKey();
-        if (!API_KEY) {
-            recipeContent.innerHTML =
-                "Unable to fetch API Key. Please check your configuration and try again.";
-            recipeContent.style.color = "red";
-            return;
-        }
+        if (!API_KEY) return; // this checks the API if api key fails
 
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
 
         // this is where you make a request to url when the user inputs a data
         const urlResponse = await fetch(url, {
             method: "POST", // POST request for sending data to server
             headers: {
-                "Content-Type": "application/json", // making a heads up sa server that the data sending is n json form
+                "Content-Type": "application/json", // making a heads up sa server that the data sending is n json form 
             },
-            body: JSON.stringify({
-// converts the data into json string before sending it to the server
-                contents: [{ parts: [{ text: inputValue }] }], // requestbody
+            body: JSON.stringify({ // converts the data into json string before sending it to the server
+                contents: [{ parts: [{ text: inputValue }] }],
             }),
         });
 
-// checks if the url responses if not ok throw an error
         if (!urlResponse.ok) {
             throw new Error(
                 `API request failed: ${urlResponse.status} ${urlResponse.statusText}`
             );
         }
 
-//validates the recipe
         const isDishValid = await validateRecipe(url, inputValue);
 
         if (!isDishValid) {
@@ -90,8 +80,10 @@ const generateRecipe = async () => {
             .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
             .replace(/\*/g, "●")
             .replace(/\n/g, "<br>");
+
         recipeContent.innerHTML =
             `<strong>${inputValue} Recipe:</strong><br><br>` + cleanText;
+
     } catch (error) {
         console.error("Error generating recipe: ", error);
         recipeContent.innerHTML = `Error generating recipe, ${error.message} Please try again later.`;
@@ -99,39 +91,40 @@ const generateRecipe = async () => {
     }
 };
 
-const validateRecipe = async (url, inputValue) => {
-    try {
-        const validateDishRequestBody = {
-            contents: [
-                {
-                    parts: [
-                        {
-                            text: `Is "${inputValue}" a food or dish? Reply with just "yes" or "no".`,
-                        },
-                    ],
-                },
-            ],
-        };
+    const validateRecipe = async (url, value) => {
 
-        const validateDishResponse = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(validateDishRequestBody),
-        });
+        try {
+            const validateDishRequestBody = {  // this holds the content to be send to the API
+                contents: [
+                    {
+                        parts: [
+                            {
+                                text: `Is "${value}" a food or dish? Reply with just "yes" or "no".`,
+                            },
+                        ],
+                    },
+                ],
+            };
 
-        //parse data
-        const data = await validateDishResponse.json();
+            const validateDishResponse = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(validateDishRequestBody),
+            });
 
-        const aiResponse = data.candidates[0].content.parts[0].text
-            .toLowerCase()
-            .trim();
+            //parse data 
+            const data = await validateDishResponse.json();
 
-        return aiResponse === "yes";
-    } catch (error) {
-        console.error("Error Validating dish", error);
-        return false;
-    }
-};
+            const aiResponse = data.candidates[0].content.parts[0].text
+                .toLowerCase()
+                .trim();
+
+            return aiResponse === "yes";
+        } catch (error) {
+            console.error("Error Validating dish", error);
+            return false;
+        }
+    };
 
 const recipeAigenerated = async (url, inputValue) => {
     try {
@@ -168,14 +161,14 @@ const recipeAigenerated = async (url, inputValue) => {
         } else {
             throw new Error("Unexpected API response structure");
         }
+        
     } catch (error) {
         console.error("Error generating recipe", error);
         recipeContent.innerHTML = "Cannot generate a recipe";
     }
 };
-////////////////////////////////
+
 // AI Chatbot Response Function
-///////////////////////////////
 chatBotCircle.addEventListener("click", () => {
     chatBotBox.classList.toggle("active");
 
@@ -198,7 +191,6 @@ const chatWithAI = async () => {
     let userInput = chatUserTxtInput.value.trim();
 
     console.log(userInput);
-
     if (userInput !== "") {
         const userNameDiv = document.createElement("div");
         const userInputDiv = document.createElement("div");
@@ -227,7 +219,6 @@ const chatWithAI = async () => {
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
             const aiResponse = await chatBotAssist(url, userInput);
-
             const cleanText = aiResponse
                 .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
                 .replace(/\*/g, "●")
@@ -245,6 +236,8 @@ const chatWithAI = async () => {
 
             aiResponseMsg.classList.add("chat-bot-msg-content", "chat-bot-container");
             aiNameDiv.classList.add("chat-bot-container", "name-content");
+
+            console.log(aiResponseMsg);
         } catch (error) {
             console.error("Error in chatbot response:", error);
             const errorMsgDiv = document.createElement("div");
@@ -260,15 +253,7 @@ const chatBotAssist = async (url, inputValue) => {
     try {
         //request body
         const aiAssistantBody = {
-            contents: [
-                {
-                    parts: [
-                        {
-                            text: `${inputValue} don't give a steep by step on how to cook the recipe, be short and precise`,
-                        },
-                    ],
-                },
-            ],
+            contents: [{ parts: [{ text: `${inputValue} don't give a steep by step on how to cook the recipe, be short and precise` }] }],
         };
         const aiAssistantResponse = await fetch(url, {
             method: "POST",
@@ -308,11 +293,7 @@ const handleUserInput = (event) => {
     }
 
     if (event.type === "click") {
-        if (event.target === inputDish) {
-            generateRecipe();
-        } else if (event.target === chatUserTxtInput) {
-            chatWithAI();
-        }
+        generateRecipe();
     }
 };
 
